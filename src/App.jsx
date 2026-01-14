@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Products from "./pages/Products/Products";
 import CreateProduct from "./pages/CreateProduct/CreateProduct";
 import Time from "./pages/Time/Time";
+import { ProductProvider } from "./context/ProductContext"; // <-- Qo'shildi
 
 function App() {
   const router = createBrowserRouter([
@@ -33,7 +34,9 @@ function App() {
   ]);
   return (
     <CustomProvider theme={"light"}>
-      <RouterProvider router={router} />
+      <ProductProvider>
+        <RouterProvider router={router} />
+      </ProductProvider>
     </CustomProvider>
   );
 }

@@ -1,72 +1,53 @@
 // Har bir productning id, title, description, price hossalari bo'lishi kerak.
-
 import { useState } from "react";
+import { useProducts } from "../../context/ProductContext";
+import { Form, FormGroup, FormControl, FormControlLabel, Button, Schema } from "rsuite"; // ControlLabel o'rniga FormControlLabel
+
+const { StringType, NumberType } = Schema.Types;
+
+const model = Schema.Model({
+  title: StringType().isRequired("Title majburiy"),
+  description: StringType().isRequired("Description majburiy"),
+  price: NumberType("Faqat raqam kiriting").isRequired("Price majburiy"),
+});
 
 function CreateProduct() {
-  const [product, setProduct] = useState({
-    id: "",
+  const [formValue, setFormValue] = useState({
     title: "",
     description: "",
     price: ""
   });
+  const { addProduct } = useProducts();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProduct((prev) => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(product);
+  const handleSubmit = () => {
+    addProduct(formValue);
+    setFormValue({ title: "", description: "", price: "" });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>ID:</label>
-        <input
-          type="text"
-          name="id"
-          value={product.id}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Title:</label>
-        <input
-          type="text"
-          name="title"
-          value={product.title}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Description:</label>
-        <input
-          type="text"
-          name="description"
-          value={product.description}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Price:</label>
-        <input
-          type="number"
-          name="price"
-          value={product.price}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <button type="submit">Create Product</button>
-    </form>
+    <Form
+      fluid
+      model={model}
+      formValue={formValue}
+      onChange={setFormValue}
+      onSubmit={handleSubmit}
+    >
+      <FormGroup>
+        <FormControlLabel>Title</FormControlLabel>
+        <FormControl name="title" />
+      </FormGroup>
+      <FormGroup>
+        <FormControlLabel>Description</FormControlLabel>
+        <FormControl name="description" />
+      </FormGroup>
+      <FormGroup>
+        <FormControlLabel>Price</FormControlLabel>
+        <FormControl name="price" type="number" />
+      </FormGroup>
+      <Button appearance="primary" type="submit">
+        Create Product
+      </Button>
+    </Form>
   );
 }
 
