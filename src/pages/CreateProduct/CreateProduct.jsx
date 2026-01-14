@@ -1,7 +1,7 @@
 // Har bir productning id, title, description, price hossalari bo'lishi kerak.
 import { useState } from "react";
 import { useProducts } from "../../context/ProductContext";
-import { Form, FormGroup, FormControl, FormControlLabel, Button, Schema } from "rsuite"; // ControlLabel o'rniga FormControlLabel
+import { Form, FormGroup, FormControl, FormControlLabel, Button, Schema } from "rsuite";
 
 const { StringType, NumberType } = Schema.Types;
 
