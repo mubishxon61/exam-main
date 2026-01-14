@@ -6,9 +6,9 @@ import { Form, FormGroup, FormControl, FormControlLabel, Button, Schema } from "
 const { StringType, NumberType } = Schema.Types;
 
 const model = Schema.Model({
-  title: StringType().isRequired("Title majburiy"),
-  description: StringType().isRequired("Description majburiy"),
-  price: NumberType("Faqat raqam kiriting").isRequired("Price majburiy"),
+  title: StringType().isRequired("Title yozing"),
+  description: StringType().isRequired("Description yozing"),
+  price: NumberType("Faqat raqam kiriting").isRequired("Price yozing"),
 });
 
 function CreateProduct() {
