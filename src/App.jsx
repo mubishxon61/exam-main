@@ -5,7 +5,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Products from "./pages/Products/Products";
 import CreateProduct from "./pages/CreateProduct/CreateProduct";
 import Time from "./pages/Time/Time";
-import { ProductProvider } from "./context/ProductContext"; // <-- Qo'shildi
+import { ProductProvider } from "./context/ProductContext"; 
 
 function App() {
   const router = createBrowserRouter([
